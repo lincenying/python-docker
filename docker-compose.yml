@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  web:
+    build:
+      context: ./app
+      dockerfile: Dockerfile
+    command: gunicorn --bind 0.0.0.0:8006 app:app
+    expose:
+      - 8006
+  nginx:
+    build: ./nginx
+    ports:
+      - 1335:80
+    depends_on:
+      - web
