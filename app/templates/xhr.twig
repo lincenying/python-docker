@@ -4,7 +4,7 @@
   <a href="https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest"><code>XMLHttpRequest</code></a>
   is the original JavaScript way to make requests. It's natively supported
   by all browsers, but has been superseded by
-  <a href="{{ url_for("index", js="fetch") }}"><code>fetch</code></a>.
+  <a href="{{ url_for("index.index", page="fetch") }}"><code>fetch</code></a>.
 {% endblock %}
 
 {% block script %}
@@ -14,7 +14,7 @@
       // Content-Type: multipart/form-data;
       var request = new XMLHttpRequest();
       request.addEventListener('load', addShow);
-      request.open('POST', {{ url_for('addform')|tojson }});
+      request.open('POST', {{ url_for('add.addform')|tojson }});
       request.send(new FormData(this));
     }
 

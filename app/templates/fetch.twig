@@ -13,7 +13,7 @@
       var body = {}
       body.a = document.getElementById('a').value;
       body.b = document.getElementById('b').value;
-      fetch({{ url_for('addjson')|tojson }}, {
+      fetch({{ url_for('add.addjson')|tojson }}, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

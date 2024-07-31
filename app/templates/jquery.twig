@@ -14,7 +14,7 @@
       // Content-Type: application/x-www-form-urlencoded;
       $.ajax({
         method: 'POST',
-        url: {{ url_for('addform')|tojson }},
+        url: {{ url_for('add.addform')|tojson }},
         data: $(this).serialize()
       }).done(addShow);
     }

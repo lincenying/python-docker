@@ -20,7 +20,11 @@ flask --app app run --debug
 ```
 
 ```bash
-flask --app otherapp.views run --debug
+flask --app otherapp.app run --debug --port 5001
+```
+
+```bash
+flask --app api.app run --debug --port 5002
 ```
 
 Open <http://127.0.0.1:5000> in a browser.
@@ -30,7 +34,8 @@ Open <http://127.0.0.1:5000> in a browser.
 ```bash
 pip install gunicorn
 gunicorn -w 4 -b 127.0.0.1:8001 app:app
-gunicorn -w 4 -b 127.0.0.1:8002 otherapp.views:app2
+gunicorn -w 4 -b 127.0.0.1:8002 otherapp.app:app
+gunicorn -w 4 -b 127.0.0.1:8003 api.app:app
 # gunicorn -w 4 -b 127.0.0.1:端口 入口文件:实例
 ```
 

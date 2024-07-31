@@ -1,15 +1,8 @@
 import json
 import time
-from flask import jsonify, render_template, request
+from flask import jsonify, Blueprint, request
 
-from . import app
-
-
-@app.route("/", defaults={"js": "fetch"})
-@app.route("/<any(xhr, jquery, fetch):js>")
-def index(js):
-    return render_template(f"{js}.twig", js=js)
-
+app = Blueprint('add', __name__)
 
 @app.route("/add/form", methods=["POST"])
 def addform():
