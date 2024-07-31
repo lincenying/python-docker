@@ -41,3 +41,5 @@ source = ["app", "otherapp", "tests"]
 # 静态分析工具Ruff
 [tool.ruff]
 src = ["src"]
+
+[tool.pylint.main]

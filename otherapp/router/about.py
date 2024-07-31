@@ -1,6 +1,7 @@
 from flask import Blueprint
 
-app = Blueprint('about', __name__, template_folder='../templates')
+app = Blueprint("about", __name__, template_folder="../templates")
+
 
 @app.route("/about")
 def hello_about():

@@ -2,13 +2,15 @@ import json
 import time
 from flask import jsonify, Blueprint, request
 
-app = Blueprint('add', __name__)
+app = Blueprint("add", __name__)
+
 
 @app.route("/add/form", methods=["POST"])
 def addform():
     a = request.form.get("a", 0, type=float)
     b = request.form.get("b", 0, type=float)
     return jsonify(code=200, result=a + b)
+
 
 @app.route("/add/json", methods=["POST"])
 def addjson():
@@ -24,28 +26,28 @@ def addjson():
     c = {}
     try:
         c = json.loads(request.data.decode())
-    except:
-        print('err')
+    except Exception:
+        print("err")
     print(c)
-    a = float(request.json['a'])
-    b = float(request.json['b'])
-    print(time.strftime('%Y-%m-%d %H:%M:%S', time.localtime()))
-    
+    a = float(request.json["a"])
+    b = float(request.json["b"])
+    print(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()))
+
     d = {}
     try:
-        d = json.loads('{a}')
-    except:
-        print('err')
+        d = json.loads("{a}")
+    except Exception:
+        print("err")
     print(d)
-    
+
     return jsonify(code=200, result=a + b)
+
 
 @app.route("/add/query", methods=["GET"])
 def addquery():
-    a = float(request.args.get('a', 0))
-    b = float(request.args.get('b', 0))
+    a = float(request.args.get("a", 0))
+    b = float(request.args.get("b", 0))
     return jsonify(code=200, result=a + b)
-
 
 
 # request.args.get('name')  # GET
