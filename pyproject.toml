@@ -6,30 +6,38 @@ readme = "README.md"
 license = {file = "LICENSE.md"}
 maintainers = [{name = "LCY", email = "lincenying@gmail.com"}]
 dependencies = [
-    "flask",
-    "gunicorn"
+    "flask>=3.0.3",
+    "gunicorn>=22.0.0"
 ]
 
+# 项目链接
 [project.urls]
 Documentation = "https://flask.palletsprojects.com/patterns/javascript/"
 
+# 测试依赖
 [project.optional-dependencies]
 test = ["pytest"]
 
+# 构建配置
 [build-system]
 requires = ["flit_core<4"]
 build-backend = "flit_core.buildapi"
 
+# flit配置
 [tool.flit.module]
 name = "app"
 
+# pytest配置
+# https://docs.pytest.org/en/7.1.x/reference/reference.html#ini-options
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 filterwarnings = ["error"]
 
+# 测试覆盖
 [tool.coverage.run]
 branch = true
 source = ["app", "otherapp", "tests"]
 
+# 静态分析工具Ruff
 [tool.ruff]
 src = ["src"]
