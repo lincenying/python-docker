@@ -25,12 +25,16 @@
     <li class="{% if page == 'jquery' %}active{% endif %}">
         <a href="{{ url_for('index.index', page='jquery') }}">jQuery</a>
     </li>
+    <li class="{% if page == 'upload' %}active{% endif %}">
+        <a href="{{ url_for('upload.uploadFile') }}">Upload</a>
+    </li>
 </ul>
 <hr>
 <p>
     {% block intro %}{% endblock %}
 </p>
 <hr>
+{% block form %}
 <form id="calc">
     <label>a:
         <input name="a" id="a" />
@@ -44,5 +48,6 @@
 <span>=
     <span id="result"></span>
 </span>
+{% endblock %}
 {% block script %}{% endblock %}
 
