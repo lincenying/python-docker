@@ -1,3 +1,5 @@
+import json
+import time
 from flask import jsonify, render_template, request
 
 from . import app
@@ -21,9 +23,36 @@ def addjson():
     print(request.json)
     print(request.form)
     print(request.data)
+    print(type(request.json))
+    print(type(request.form))
+    print(type(request.data))
+    print(request.data.decode())
+    print(type(request.data.decode()))
+    c = {}
+    try:
+        c = json.loads(request.data.decode())
+    except:
+        print('err')
+    print(c)
     a = float(request.json['a'])
     b = float(request.json['b'])
+    print(time.strftime('%Y-%m-%d %H:%M:%S', time.localtime()))
+    
+    d = {}
+    try:
+        d = json.loads('{a}')
+    except:
+        print('err')
+    print(d)
+    
     return jsonify(code=200, result=a + b)
+
+@app.route("/add/query", methods=["GET"])
+def addquery():
+    a = float(request.args.get('a', 0))
+    b = float(request.args.get('b', 0))
+    return jsonify(code=200, result=a + b)
+
 
 
 # request.args.get('name')  # GET

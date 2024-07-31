@@ -1,11 +1,14 @@
 [project]
-name = "js_example"
+name = "python_demo"
 version = "1.1.0"
 description = "Demonstrates making AJAX requests to Flask."
 readme = "README.md"
 license = {file = "LICENSE.md"}
 maintainers = [{name = "LCY", email = "lincenying@gmail.com"}]
-dependencies = ["flask"]
+dependencies = [
+    "flask",
+    "gunicorn"
+]
 
 [project.urls]
 Documentation = "https://flask.palletsprojects.com/patterns/javascript/"
