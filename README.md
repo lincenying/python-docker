@@ -9,6 +9,7 @@
 ```bash
 python3 -m venv .venv
 . .venv/bin/activate
+pip install --upgrade pip
 pip3 install -e .
 ```
 
@@ -39,4 +40,21 @@ gunicorn -w 4 -b 127.0.0.1:8002 otherapp.views:app2
 pip install -e '.[test]'
 coverage run -m pytest
 coverage report
+```
+
+
+## docker
+```bash
+# 构建镜像
+docker build -t python-demo -f ./Dockerfile .
+# 运行镜像
+docker run -d -p 8006:8006 --name container-python-demo python-demo
+# 进入镜像
+docker exec -it container-python-demo /bin/sh
+# 停止容器
+docker stop container-python-demo
+# 删除容器
+docker rm container-python-demo
+# 删除镜像
+docker rmi python-demo
 ```
