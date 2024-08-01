@@ -1,4 +1,4 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify, request
 from .router.index import app as index
 from .router.about import app as about
 
@@ -12,6 +12,7 @@ app.config["ROOT_DIR"] = "api"
 
 app.register_blueprint(index, url_prefix="/api")
 app.register_blueprint(about, url_prefix="/api")
+
 
 @app.errorhandler(404)
 def page_not_found(error):

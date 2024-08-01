@@ -29,8 +29,10 @@ def addjson():
     except Exception:
         print("err")
     print(c)
-    a = float(request.json["a"])
-    b = float(request.json["b"])
+    a = b = 0
+    if request.json is not None:
+        a = float(request.json["a"])
+        b = float(request.json["b"])
     print(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()))
 
     d = {}
