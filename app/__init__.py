@@ -18,5 +18,5 @@ app.register_blueprint(upload)
 
 
 @app.errorhandler(404)
-def page_not_found():
-    return render_template("404.twig")
+def page_not_found(error):
+    return render_template("404.twig", error=error)

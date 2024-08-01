@@ -33,24 +33,26 @@
     </li>
 </ul>
 <hr>
-<p>
-    {% block intro %}{% endblock %}
-</p>
-<hr>
-{% block form %}
-<form id="calc">
-    <label>a:
-        <input name="a" id="a" />
-    </label>
-    <span>+</span>
-    <label>b:
-        <input name="b" id="b" />
-    </label>
-    <input type="submit" value="计算">
-</form>
-<span>=
-    <span id="result"></span>
-</span>
-{% endblock %}
+<div id="app">
+    <p>
+        {% block intro %}{% endblock %}
+    </p>
+    <hr>
+    {% block form %}
+    <form id="calc">
+        <label>a:
+            <input name="a" id="a" />
+        </label>
+        <span>+</span>
+        <label>b:
+            <input name="b" id="b" />
+        </label>
+        <input type="submit" value="计算">
+    </form>
+    <span>=
+        <span id="result"></span>
+    </span>
+    {% endblock %}
+</div>
 {% block script %}{% endblock %}
 
