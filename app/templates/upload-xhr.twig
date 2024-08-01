@@ -1,0 +1,56 @@
+{% extends 'base.twig' %}
+
+{% block intro %}
+    <div id="end" style="display: none;">
+        <p id="message"></p>
+        <img id="img" src="" alt="" width=="200" height="200">
+    </div>
+    <div id="default">
+        <p>请选择上传文件</p>
+    </div>
+    <div id="ing" style="display: none;">
+        <p>文件上传中...</p>
+    </div>
+{% endblock %}
+
+{% block form %}
+<form id="uploadForm">
+    <p><input type="file" id="fileInput" name="file"></p>
+    <p><input type="button" id="btnUpload" value="Upload"></p>
+</form>
+{% endblock %}
+
+{% block script %}
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script>
+$(document).ready(function(){
+    $('#btnUpload').click(function(){
+        $('#default').hide()
+        $('#ing').show()
+        $('#end').hide()
+        $('#btnUpload').prop('disabled', true)
+        var formData = new FormData($('#uploadForm')[0]);
+        $.ajax({
+            url: {{ url_for('upload.upload_file', type="json")|tojson }},  // 替换成你的上传处理脚本
+            type: 'POST',
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function(response){
+                $('#ing').hide()
+                $('#end').show()
+                $('#img').attr('src', response.url)
+                $('#message').text(response.message)
+                $('#fileInput').val('')
+                $('#btnUpload').prop('disabled', false)
+                console.log('图片上传成功：', response);
+            },
+            error: function(){
+                $('#btnUpload').prop('disabled', false)
+                console.log('图片上传失败');
+            }
+        });
+    });
+});
+</script>
+{% endblock %}

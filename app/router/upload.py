@@ -23,9 +23,9 @@ def allowed_file(filename):
 
 
 @app.route("/upload", methods=["GET", "POST"])
-def uploadFile():
+def upload_file():
     if request.method == "POST":
-        responseType = request.args.get("type", "html")
+        response_type = request.args.get("type", "html")
         # 获取上传过来的文件对象
         file = request.files["file"]
         # 检查文件对象是否存在，且文件名合法
@@ -36,7 +36,7 @@ def uploadFile():
             file.save(
                 os.path.join(current_app.config["ROOT_DIR"], UPLOAD_FOLDER, filename)
             )
-            if responseType == "json":
+            if response_type == "json":
                 return {
                     "message": "Upload Successfully",
                     "url": url_for("upload.uploaded_file", filename=filename),
@@ -49,7 +49,7 @@ def uploadFile():
                     url=url_for("upload.uploaded_file", filename=filename),
                 )
         else:  # 文件不合法
-            if responseType == "json":
+            if response_type == "json":
                 return {"message": "Upload Failed"}
             else:
                 return render_template(
@@ -58,7 +58,11 @@ def uploadFile():
     else:  # GET方法
         return render_template("upload.twig", page="upload")
 
+@app.route("/upload_api", methods=["GET"])
+def upload_file_api():
+    return render_template("upload-xhr.twig", page="upload_api")
 
 @app.route("/uploads/<filename>")
 def uploaded_file(filename):
     return send_from_directory(UPLOAD_FOLDER, filename)
+

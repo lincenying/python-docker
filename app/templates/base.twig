@@ -26,7 +26,10 @@
         <a href="{{ url_for('index.index', page='jquery') }}">jQuery</a>
     </li>
     <li class="{% if page == 'upload' %}active{% endif %}">
-        <a href="{{ url_for('upload.uploadFile') }}">Upload</a>
+        <a href="{{ url_for('upload.upload_file') }}">Upload-Form</a>
+    </li>
+    <li class="{% if page == 'upload_api' %}active{% endif %}">
+        <a href="{{ url_for('upload.upload_file_api') }}">Upload-Xhr</a>
     </li>
 </ul>
 <hr>
