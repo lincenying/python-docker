@@ -1,17 +1,14 @@
 from flask import Flask, jsonify, request
-from .router.index import app as index
-from .router.about import app as about
+from .router.index import bp_index
+from .router.about import bp_about
 
 app = Flask(__name__)
 
 app.jinja_env.auto_reload = True
 app.config["TEMPLATES_AUTO_RELOAD"] = True
 
-# 当前项目文件夹
-app.config["ROOT_DIR"] = "api"
-
-app.register_blueprint(index, url_prefix="/api")
-app.register_blueprint(about, url_prefix="/api")
+app.register_blueprint(bp_index, url_prefix="/api")
+app.register_blueprint(bp_about, url_prefix="/api")
 
 
 @app.errorhandler(404)

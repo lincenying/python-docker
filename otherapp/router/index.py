@@ -1,8 +1,8 @@
 from flask import Blueprint
 
-app = Blueprint("index", __name__, template_folder="../templates")
+bp_index = Blueprint("index", __name__, template_folder="../templates")
 
 
-@app.route("/")
+@bp_index.route("/")
 def hello_world():
     return "<p>Hello, World!</p>"
