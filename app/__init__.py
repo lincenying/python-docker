@@ -1,20 +1,21 @@
 from flask import Flask, render_template
-from .router.index import app as index
-from .router.add import app as add
-from .router.upload import app as upload
+from .mongo import mongo
+
+from .router.index import bp_index
+from .router.add import bp_add
+from .router.upload import bp_upload
 
 app = Flask(__name__)
+
+app.config["MONGO_URI"] = "mongodb://localhost:27017/mmfblog_v2"
+mongo.init_app(app)
 
 app.jinja_env.auto_reload = True
 app.config["TEMPLATES_AUTO_RELOAD"] = True
 
-# 当前项目文件夹
-app.config["ROOT_DIR"] = "app"
-
-
-app.register_blueprint(index)
-app.register_blueprint(add)
-app.register_blueprint(upload)
+app.register_blueprint(bp_index)
+app.register_blueprint(bp_add)
+app.register_blueprint(bp_upload)
 
 
 @app.errorhandler(404)

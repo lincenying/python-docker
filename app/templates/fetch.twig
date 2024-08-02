@@ -1,39 +1,52 @@
 {% extends 'base.twig' %}
 
 {% block intro %}
-  <a href="https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/fetch"><code>fetch</code></a>
-  is the <em>modern</em> plain JavaScript way to make requests. It's
-  supported in all modern browsers.
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/fetch">
+        <code>fetch</code>
+    </a>
+    is the
+    <em>modern</em>
+    plain JavaScript way to make requests. It's
+      supported in all modern browsers.
+
+    <table>
+        {% for val in users %}
+            <tr>
+                <td>{{ val._id }}</td>
+                <td>{{ val.username }}</td>
+                <td>{{ val.email }}</td>
+                <td>{{ val.creat_date }}</td>
+            </tr>
+        {% endfor %}
+    </table>
 {% endblock %}
 
 {% block script %}
-  <script>
-    function addSubmit(ev) {
-      ev.preventDefault();
-      var body = {}
-      body.a = document.getElementById('a').value;
-      body.b = document.getElementById('b').value;
-      fetch({{ url_for('add.addjson')|tojson }}, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(body)
-      })
-        .then(parseJSON)
-        .then(addShow);
-    }
+    <script>
+        function addSubmit(ev) {
+            ev.preventDefault();
+            var body = {}
+            body.a = document.getElementById('a').value;
+            body.b = document.getElementById('b').value;
+            fetch({{ url_for('add.addjson')|tojson }}, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(body)
+            }).then(parseJSON).then(addShow);
+        }
 
-    function parseJSON(response) {
-      return response.json();
-    }
+        function parseJSON(response) {
+            return response.json();
+        }
 
-    function addShow(data) {
-      var span = document.getElementById('result');
-      span.innerText = data.result;
-    }
+        function addShow(data) {
+            var span = document.getElementById('result');
+            span.innerText = data.result;
+        }
 
-    var form = document.getElementById('calc');
-    form.addEventListener('submit', addSubmit);
-  </script>
+        var form = document.getElementById('calc');
+        form.addEventListener('submit', addSubmit);
+    </script>
 {% endblock %}

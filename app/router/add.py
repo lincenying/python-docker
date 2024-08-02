@@ -2,17 +2,17 @@ import json
 import time
 from flask import jsonify, Blueprint, request
 
-app = Blueprint("add", __name__)
+bp_add = Blueprint("add", __name__)
 
 
-@app.route("/add/form", methods=["POST"])
+@bp_add.route("/add/form", methods=["POST"])
 def addform():
     a = request.form.get("a", 0, type=float)
     b = request.form.get("b", 0, type=float)
     return jsonify(code=200, result=a + b)
 
 
-@app.route("/add/json", methods=["POST"])
+@bp_add.route("/add/json", methods=["POST"])
 def addjson():
     print("content_type:", request.headers.get("content_type"))
     print(request.json)
@@ -45,7 +45,7 @@ def addjson():
     return jsonify(code=200, result=a + b)
 
 
-@app.route("/add/query", methods=["GET"])
+@bp_add.route("/add/query", methods=["GET"])
 def addquery():
     a = float(request.args.get("a", 0))
     b = float(request.args.get("b", 0))
