@@ -1,3 +1,4 @@
+import os
 from flask import Flask, render_template
 from .mongo import mongo
 
@@ -7,7 +8,9 @@ from .router.upload import bp_upload
 
 app = Flask(__name__)
 
-app.config["MONGO_URI"] = "mongodb://localhost:27017/mmfblog_v2"
+MONGO_URI = os.environ.get("MONGO_URI") or "mongodb://localhost:27017"
+
+app.config["MONGO_URI"] = MONGO_URI + "/mmfblog_v2"
 mongo.init_app(app)
 
 app.jinja_env.auto_reload = True

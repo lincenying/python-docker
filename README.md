@@ -55,15 +55,24 @@ coverage report
 
 ```bash
 # 构建镜像
-docker build -t python-demo -f ./Dockerfile .
-# 运行镜像
-docker run -d -p 8006:8006 --name container-python-demo python-demo
+docker build -t images-python-demo -f ./Dockerfile .
+# 运行镜像, 映射本地数据库路径到容器中
+docker run -d \
+-p 8006:8006 -p 8007:8007 -p 8008:8008 \
+--name container-python-demo \
+images-python-demo
 # 进入镜像
-docker exec -it container-python-demo /bin/sh
+docker exec -it container-python-demo /bin/bash
 # 停止容器
 docker stop container-python-demo
 # 删除容器
 docker rm container-python-demo
 # 删除镜像
-docker rmi python-demo
+docker rmi images-python-demo
+```
+
+## docker-compose
+
+```bash
+docker-compose up -d
 ```

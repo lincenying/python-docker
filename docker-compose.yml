@@ -1,16 +1,21 @@
-version: '3.8'
-
 services:
-  web:
-    build:
-      context: ./app
-      dockerfile: Dockerfile
-    command: gunicorn --bind 0.0.0.0:8006 app:app
-    expose:
-      - 8006
-  nginx:
-    build: ./nginx
-    ports:
-      - 1335:80
-    depends_on:
-      - web
+    db:
+        image: mongo:3.6.0
+        volumes:
+            - /Users/lincenying/web/mongodb/data:/data/db
+        ports:
+            - 27017:27017
+    web:
+        build:
+            context: .
+            dockerfile: Dockerfile
+        environment:
+            MONGO_URI: mongodb://db:27017
+        expose:
+            - 8006 8007 8008
+        depends_on:
+            - db
+        ports:
+            - 8006:8006
+            - 8007:8007
+            - 8008:8008
