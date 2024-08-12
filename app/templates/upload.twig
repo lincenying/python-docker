@@ -2,11 +2,22 @@
 
 {% block intro %}
     {% if message %}
-    {{ message }}<br>
-    <img src="{{ url }}" alt="" width=="200" height="200">
+        {{ message }}<br>
+        <img src="{{ url }}" alt="" width=="200" height="200">
     {% else %}
-    <p>请选择上传文件</p>
+        <p>请选择上传文件</p>
     {% endif %}
+
+    <table>
+        {% for val in users %}
+            <tr>
+                <td>{{ val._id }}</td>
+                <td>{{ val.username }}</td>
+                <td>{{ val.email }}</td>
+                <td>{{ val.creat_date }}</td>
+            </tr>
+        {% endfor %}
+    </table>
 {% endblock %}
 
 {% block form %}
@@ -16,6 +27,4 @@
     </form>
 {% endblock %}
 
-{% block script %}
-
-{% endblock %}
+{% block script %}{% endblock %}

@@ -58,10 +58,10 @@ def upload_file():
                     "upload.twig", page="upload", message="Upload Failed"
                 )
     else:  # GET方法
+        users = []
         if mongo.db is not None:
             users = list(mongo.db.admins.find({}))
-            print(users)
-        return render_template("upload.twig", page="upload")
+        return render_template("upload.twig", page="upload", users=users)
 
 
 @bp_upload.route("/upload_api", methods=["GET"])

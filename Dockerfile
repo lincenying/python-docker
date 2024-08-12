@@ -1,5 +1,5 @@
 # 使用官方的Python基础镜像
-FROM python:3.9`
+FROM python:3.9
 LABEL maintainer="LinCenYing lincenying@gmail.com"
 # 升级pip版本
 RUN pip install --upgrade pip
@@ -18,7 +18,8 @@ ENV FLASK_APP3=api.app:app
 # 暴露端口
 EXPOSE 8006 8007 8008
 # 运行Gunicorn服务
-CMD ["sh", "-c", "gunicorn -w 4 -b 0.0.0.0:8006 $FLASK_APP1 & gunicorn -w 4 -b 0.0.0.0:8007 $FLASK_APP2 & gunicorn -w 4 -b 0.0.0.0:8008 $FLASK_APP3 & wait"]
+CMD ["sh", "-c", "gunicorn -w 2 -b 0.0.0.0:8006 $FLASK_APP1"]
+# CMD ["sh", "-c", "gunicorn -w 2 -b 0.0.0.0:8006 $FLASK_APP1 & gunicorn -w 2 -b 0.0.0.0:8007 $FLASK_APP2 & gunicorn -w 2 -b 0.0.0.0:8008 $FLASK_APP3 & wait"]
 
 # ENTRYPOINT ["gunicorn", "-w", "4", "-b", "0.0.0.0:8006", "--access-logfile", "access.log", "--error-logfile", "error.log"]
 # CMD ["app:app"]
