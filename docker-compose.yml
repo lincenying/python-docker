@@ -6,6 +6,8 @@ services:
         ports:
             - 27017:27017
     web:
+        image: web-server:${TAG}
+        container_name: web-server
         build:
             context: .
             dockerfile: Dockerfile
