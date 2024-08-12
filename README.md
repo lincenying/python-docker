@@ -2,14 +2,18 @@
 
 演示如何使用 JavaScript 发布表单数据并处理 JSON 响应。这样无需离开页面即可发出请求。
 演示如何使用 [fetch](https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/fetch)、[XMLHttpRequest](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest) 和[jQuery.ajax](https://api.jquery.com/jQuery.ajax/)。
-有关 JavaScript 和 Ajax，请参阅 [Flask文档](https://flask.palletsprojects.com/patterns/javascript/)。
+有关 JavaScript 和 Ajax，请参阅 [Flask 文档](https://flask.palletsprojects.com/patterns/javascript/)。
 
 ## Install
 
 ```bash
+# 创建虚拟环境
 python3 -m venv .venv
+# 激活虚拟环境
 . .venv/bin/activate
+# 升级pip
 pip install --upgrade pip
+# 安装依赖
 pip3 install -e .
 ```
 
@@ -47,8 +51,8 @@ coverage run -m pytest
 coverage report
 ```
 
-
 ## docker
+
 ```bash
 # 构建镜像
 docker build -t python-demo -f ./Dockerfile .

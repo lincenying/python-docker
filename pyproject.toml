@@ -1,6 +1,6 @@
 [project]
 name = "python_demo"
-version = "1.1.0"
+version = "1.0.0"
 description = "Demonstrates making AJAX requests to Flask."
 readme = "README.md"
 license = {file = "LICENSE.md"}

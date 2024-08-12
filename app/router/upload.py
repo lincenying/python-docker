@@ -69,6 +69,6 @@ def upload_file_api():
     return render_template("upload-xhr.twig", page="upload_api")
 
 
-@bp_upload.route("/uploads/<filename>")
-def uploaded_file(filename):
+@bp_upload.route("/uploads/<string:filename>")
+def uploaded_file(filename: str):
     return send_from_directory(UPLOAD_FOLDER, filename)
