@@ -8,7 +8,11 @@ from .router.upload import bp_upload
 
 app = Flask(__name__)
 
-MONGO_URI = os.environ.get("MONGO_URI") or "mongodb://localhost:27017"
+MONGO_URI = (
+    os.environ.get("DATABASE_URL")
+    or os.environ.get("MONGO_URI")
+    or "mongodb://localhost:27017"
+)
 
 app.config["MONGO_URI"] = MONGO_URI + "/mmfblog_v2"
 mongo.init_app(app)

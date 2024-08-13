@@ -53,6 +53,9 @@ coverage report
 
 ## docker
 
+如果使用宿主机起`mongodb`服务, 可以直接使用下面命令构建启动容器
+如果要将`mongodb`也容器化, 可以直接使用`docker-compose`
+
 ```bash
 # 构建镜像
 docker build -t images-python-demo -f ./Dockerfile .
@@ -72,6 +75,13 @@ docker rmi images-python-demo
 ```
 
 ## docker-compose
+
+修改`docker-compose.yml`中的`volumes`配置, 将宿主机数据库路径映射到容器中
+
+```yaml
+volumes:
+    - /Users/lincenying/web/mongodb/data:/data/db
+```
 
 ```bash
 docker-compose up -d

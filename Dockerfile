@@ -12,8 +12,13 @@ RUN pip3 install -e .
 
 # 设置环境变量
 ENV FLASK_APP1=app:app
-ENV FLASK_APP2=otherapp.app:app
-ENV FLASK_APP3=api.app:app
+# ENV FLASK_APP2=otherapp.app:app
+# ENV FLASK_APP3=api.app:app
+
+## 生产环境
+ENV NODE_ENV=production
+## 如果没有将mongodb容器化, name数据库地址为宿主机数据库地址
+ENV MONGO_URI=mongodb://host.docker.internal:27017
 
 # 暴露端口
 EXPOSE 8006 8007 8008
@@ -21,5 +26,5 @@ EXPOSE 8006 8007 8008
 CMD ["sh", "-c", "gunicorn -w 2 -b 0.0.0.0:8006 --timeout 90 $FLASK_APP1"]
 # CMD ["sh", "-c", "gunicorn -w 2 -b 0.0.0.0:8006 $FLASK_APP1 & gunicorn -w 2 -b 0.0.0.0:8007 $FLASK_APP2 & gunicorn -w 2 -b 0.0.0.0:8008 $FLASK_APP3 & wait"]
 
-# ENTRYPOINT ["gunicorn", "-w", "4", "-b", "0.0.0.0:8006", "--access-logfile", "access.log", "--error-logfile", "error.log"]
+# ENTRYPOINT ["gunicorn", "-w", "2", "-b", "0.0.0.0:8006", "--access-logfile", "access.log", "--error-logfile", "error.log"]
 # CMD ["app:app"]

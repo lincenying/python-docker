@@ -1,5 +1,5 @@
 [project]
-name = "python_demo"
+name = "python-demo"
 version = "1.0.0"
 description = "Demonstrates making AJAX requests to Flask."
 readme = "README.md"
