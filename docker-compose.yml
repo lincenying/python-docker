@@ -1,24 +1,33 @@
 services:
-    db:
-        image: mongo:3.6
-        container_name: mongo-server
-        volumes:
-            - /Users/lincenying/web/mongodb/data:/data/db
-        ports:
-            - 27017:27017
-    web:
-        image: web-server:${TAG}
-        container_name: web-server
-        build:
-            context: .
-            dockerfile: Dockerfile
-        environment:
-            DATABASE_URL: mongodb://db:27017
-        expose:
-            - 8006 8007 8008
-        depends_on:
-            - db
-        ports:
-            - 8006:8006
-            - 8007:8007
-            - 8008:8008
+  mongo:
+    container_name: mongo-server
+    image: mongo:3.6
+    volumes:
+      - /Users/lincenying/web/mongodb/data:/data/db
+    ports:
+      - 27017:27017
+    networks:
+      - webnet
+
+  web:
+    container_name: python-web-server
+    image: python-web-server:${TAG}
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      DATABASE_URL: mongodb://mongo:27017
+    expose:
+      - 8006 8007 8008
+    depends_on:
+      - mongo
+    ports:
+      - 8006:8006
+      - 8007:8007
+      - 8008:8008
+    networks:
+      - webnet
+
+networks:
+  webnet:
+    driver: bridge

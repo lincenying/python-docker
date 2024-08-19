@@ -62,6 +62,7 @@ docker build -t images-python-demo -f ./Dockerfile .
 # 运行镜像, 映射本地数据库路径到容器中
 docker run -d \
 -p 8006:8006 -p 8007:8007 -p 8008:8008 \
+-e MONGO_URI=mongodb://host.docker.internal:27017 \
 --name container-python-demo \
 images-python-demo
 # 进入镜像

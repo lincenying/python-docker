@@ -1,5 +1,5 @@
 # 使用官方的Python基础镜像
-FROM python:3.9
+FROM python:3.9-slim
 LABEL maintainer="LinCenYing lincenying@gmail.com"
 # 升级pip版本
 RUN pip install --upgrade pip
@@ -7,6 +7,10 @@ RUN pip install --upgrade pip
 COPY . /app
 # 设置工作目录
 WORKDIR /app
+# 镜像源地址为npmmirror镜像源, 镜像源地址为https://registry.npmmirror.com/-/binary/python, 镜像源地址跳过校验
+# 镜像源地址为https://registry.npmmirror.com/-/binary/python, 镜像源地址跳过校验
+RUN export PYTHON_BUILD_MIRROR_URL="https://registry.npmmirror.com/-/binary/python"
+RUN export PYTHON_BUILD_MIRROR_URL_SKIP_CHECKSUM=1
 # 安装应用的依赖
 RUN pip3 install -e .
 
