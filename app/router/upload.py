@@ -8,7 +8,7 @@ from flask import (
     current_app as app,
 )
 
-from ..mongo import mongo
+from app.mongo import mongo
 
 bp_upload = Blueprint("upload", __name__)
 
