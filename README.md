@@ -10,7 +10,10 @@
 # 创建虚拟环境
 python3 -m venv .venv
 # 激活虚拟环境
+# linux/mac
 . .venv/bin/activate
+# win
+.venv/Scripts/activate
 # 升级pip
 pip install --upgrade pip
 # 安装依赖
