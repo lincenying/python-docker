@@ -1,6 +1,6 @@
 services:
-  mongo:
-    container_name: mongo-server-python
+  python-mongo-server:
+    container_name: python-mongo-server
     image: mongo:4.0
     volumes:
       - /Users/lincenying/web/mongodb/data:/data/db
@@ -9,35 +9,35 @@ services:
     networks:
       - webnet
 
-  python_demo:
+  python-demo-server:
     container_name: python-demo-server
     image: python-demo-server:${TAG}
     build:
       context: python-demo
       dockerfile: Dockerfile
     environment:
-      DATABASE_URL: mongodb://mongo:27017
+      DATABASE_URL: mongodb://python-mongo-server:27017
     expose:
       - 8006
     depends_on:
-      - mongo
+      - python-mongo-server
     ports:
       - 8006:8006
     networks:
       - webnet
 
-  python_api:
+  python-api-server:
     container_name: python-api-server
     image: python-api-server:${TAG}
     build:
       context: python-api
       dockerfile: Dockerfile
     environment:
-      DATABASE_URL: mongodb://mongo:27017
+      DATABASE_URL: mongodb://python-mongo-server:27017
     expose:
       - 8007
     depends_on:
-      - mongo
+      - python-mongo-server
     ports:
       - 8007:8007
     networks:
